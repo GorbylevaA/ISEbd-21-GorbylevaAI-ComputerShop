@@ -1,8 +1,7 @@
 using ComputerShopBusinessLogic.BusinessLogics;
 using ComputerShopContracts.BusinessLogicsContracts;
 using ComputerShopContracts.StoragesContracts;
-using ComputerShopFileImplement;
-using ComputerShopFileImplement.Implements;
+using ComputerShopDatabaseImplement.Implements;
 using System;
 using System.Windows.Forms;
 using Unity;
@@ -33,7 +32,7 @@ namespace ComputerShopView
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(Container.Resolve<FormMain>());
-            FileDataListSingleton.GetInstance().SaveData();
+            
         }
 
         private static IUnityContainer BuildUnityContainer()

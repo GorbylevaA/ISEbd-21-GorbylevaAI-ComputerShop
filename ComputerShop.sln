@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerShopListImplement",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerShopView", "ComputerShopView\ComputerShopView.csproj", "{2F12561D-AA47-4E3D-8417-B31FF8A4EDE7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShopDatabaseImplement", "ComputerShopDatabaseImplement\ComputerShopDatabaseImplement.csproj", "{6A5A2E4D-307F-4E4A-8E65-2639BFDD94C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{2F12561D-AA47-4E3D-8417-B31FF8A4EDE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F12561D-AA47-4E3D-8417-B31FF8A4EDE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F12561D-AA47-4E3D-8417-B31FF8A4EDE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A5A2E4D-307F-4E4A-8E65-2639BFDD94C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A5A2E4D-307F-4E4A-8E65-2639BFDD94C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A5A2E4D-307F-4E4A-8E65-2639BFDD94C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A5A2E4D-307F-4E4A-8E65-2639BFDD94C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
