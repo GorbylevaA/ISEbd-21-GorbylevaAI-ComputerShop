@@ -1,31 +1,31 @@
 ﻿using ComputerShopContracts.BindingModels;
-using ComputerShopBusinessLogic.BusinessLogics;
+using ComputerShopContracts.BusinessLogicsContracts;
 using System;
 using System.Windows.Forms;
 using Unity;
-
 
 namespace ComputerShopView
 {
     public partial class FormComponents : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly ComponentLogic logic;
-        public FormComponents(ComponentLogic logic)
+        private readonly IComponentLogic _logic;
+
+        public FormComponents(IComponentLogic logic)
         {
             InitializeComponent();
-            this.logic = logic;
+            _logic = logic;
         }
+
         private void FormComponents_Load(object sender, EventArgs e)
         {
             LoadData();
         }
+
         private void LoadData()
         {
             try
             {
-                var list = logic.Read(null);
+                var list = _logic.Read(null);
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -40,20 +40,21 @@ namespace ComputerShopView
                MessageBoxIcon.Error);
             }
         }
+
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            var form =Container.Resolve<FormComponent>();
+            var form = Program.Container.Resolve<FormComponent>();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
             }
-
         }
+
         private void ButtonUpd_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormComponent>();
+                var form = Program.Container.Resolve<FormComponent>();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -61,6 +62,7 @@ namespace ComputerShopView
                 }
             }
         }
+
         private void ButtonDel_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -72,7 +74,7 @@ namespace ComputerShopView
                    Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        logic.Delete(new ComponentBindingModel { Id = id });
+                        _logic.Delete(new ComponentBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {
@@ -83,11 +85,10 @@ namespace ComputerShopView
                 }
             }
         }
+
         private void ButtonRef_Click(object sender, EventArgs e)
         {
             LoadData();
         }
-
-
     }
 }

@@ -1,38 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ComputerShopContracts.BindingModels;
+﻿using ComputerShopContracts.BindingModels;
 using ComputerShopContracts.BusinessLogicsContracts;
-using ComputerShopBusinessLogic.BusinessLogics;
-using Unity;
+using System;
+using System.Windows.Forms;
 
 namespace ComputerShopView
 {
     public partial class FormComponent : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        public int Id { set { id = value; } }
-        private readonly ComponentLogic logic;
+        public int Id
+        {
+            set { id = value; }
+        }
+
+        private readonly IComponentLogic _logic;
+
         private int? id;
-        public FormComponent(ComponentLogic logic)
+
+        public FormComponent(IComponentLogic logic)
         {
             InitializeComponent();
-            this.logic = logic;
+            _logic = logic;
         }
+
         private void FormComponent_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {
                 try
                 {
-                    var view = logic.Read(new ComponentBindingModel { Id = id })?[0];
+                    var view = _logic.Read(new ComponentBindingModel { Id = id })?[0];
                     if (view != null)
                     {
                         textBoxName.Text = view.ComponentName;
@@ -62,7 +58,7 @@ namespace ComputerShopView
             }
             try
             {
-                logic.CreateOrUpdate(new ComponentBindingModel
+                _logic.CreateOrUpdate(new ComponentBindingModel
                 {
                     Id = id,
                     ComponentName = textBoxName.Text
@@ -81,7 +77,6 @@ namespace ComputerShopView
 
         private void textBoxName_TextChanged(object sender, EventArgs e)
         {
-
         }
     }
 }

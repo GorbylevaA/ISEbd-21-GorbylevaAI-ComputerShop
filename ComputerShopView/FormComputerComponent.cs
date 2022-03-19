@@ -1,27 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+﻿using ComputerShopBusinessLogic.BusinessLogics;
 using ComputerShopContracts.ViewModels;
-using ComputerShopBusinessLogic.BusinessLogics;
-using Unity;
-
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace ComputerShopView
 {
     public partial class FormComputerComponent : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public int Id
         {
             get { return Convert.ToInt32(comboBoxComponent.SelectedValue); }
             set { comboBoxComponent.SelectedValue = value; }
         }
-        public string ComponentName { get { return comboBoxComponent.Text; } }
+
+        public string ComponentName
+        {
+            get { return comboBoxComponent.Text; }
+        }
+
         public int Count
         {
             get { return Convert.ToInt32(textBoxCount.Text); }
@@ -30,6 +27,7 @@ namespace ComputerShopView
                 textBoxCount.Text = value.ToString();
             }
         }
+
         public FormComputerComponent(ComponentLogic logic)
         {
             InitializeComponent();
@@ -42,6 +40,7 @@ namespace ComputerShopView
                 comboBoxComponent.SelectedItem = null;
             }
         }
+
         private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxCount.Text))
@@ -59,6 +58,7 @@ namespace ComputerShopView
             DialogResult = DialogResult.OK;
             Close();
         }
+
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
@@ -67,13 +67,10 @@ namespace ComputerShopView
 
         private void comboBoxComponent_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void textBoxCount_TextChanged(object sender, EventArgs e)
         {
-
         }
     }
 }
-

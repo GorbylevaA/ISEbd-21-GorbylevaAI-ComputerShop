@@ -1,32 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using ComputerShopContracts.BindingModels;
-using ComputerShopBusinessLogic.BusinessLogics;
+﻿using ComputerShopContracts.BindingModels;
 using ComputerShopContracts.BusinessLogicsContracts;
+using System;
+using System.Windows.Forms;
 using Unity;
-
 
 namespace ComputerShopView
 {
     public partial class FormMain : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly OrderLogic _orderLogic;
-        public FormMain(OrderLogic orderLogic)
+        private readonly IOrderLogic _orderLogic;
+
+        public FormMain(IOrderLogic orderLogic)
         {
             InitializeComponent();
-            this._orderLogic = orderLogic;
+            _orderLogic = orderLogic;
         }
+
         private void FormMain_Load(object sender, EventArgs e)
         {
             LoadData();
         }
+
         private void LoadData()
         {
             try
@@ -47,21 +41,23 @@ namespace ComputerShopView
 
         private void изделияToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormComputers>();
+            var form = Program.Container.Resolve<FormComputers>();
             form.ShowDialog();
         }
 
         private void компонентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormComponents>();
+            var form = Program.Container.Resolve<FormComponents>();
             form.ShowDialog();
         }
+
         private void ButtonCreateOrder_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCreateOrder>();
+            var form = Program.Container.Resolve<FormCreateOrder>();
             form.ShowDialog();
             LoadData();
         }
+
         private void ButtonTakeOrderInWork_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -83,6 +79,7 @@ namespace ComputerShopView
                 }
             }
         }
+
         private void ButtonOrderReady_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -103,6 +100,7 @@ namespace ComputerShopView
                 }
             }
         }
+
         private void ButtonIssuedOrder_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -123,6 +121,7 @@ namespace ComputerShopView
                 }
             }
         }
+
         private void ButtonRef_Click(object sender, EventArgs e)
         {
             LoadData();
@@ -130,9 +129,6 @@ namespace ComputerShopView
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
         }
-
-
     }
 }

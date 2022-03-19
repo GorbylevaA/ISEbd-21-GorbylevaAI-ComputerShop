@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ComputerShopContracts.Enums
+﻿namespace ComputerShopContracts.Enums
 {
     public enum OrderStatus
     {
@@ -11,6 +7,4 @@ namespace ComputerShopContracts.Enums
         Готов = 2,
         Выдан = 3
     }
-
 }
-

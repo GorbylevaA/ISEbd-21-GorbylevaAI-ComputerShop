@@ -1,38 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ComputerShopContracts.BindingModels;
+using ComputerShopContracts.BusinessLogicsContracts;
+using System;
 using System.Windows.Forms;
 using Unity;
-using ComputerShopBusinessLogic.BusinessLogics;
-using ComputerShopContracts.BindingModels;
 
 namespace ComputerShopView
 {
     public partial class FormComputers : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly ComputerLogic logic;
-        public FormComputers(ComputerLogic logic)
+        private readonly IComputerLogic _logic;
+
+        public FormComputers(IComputerLogic logic)
         {
             InitializeComponent();
-            this.logic = logic;
+            _logic = logic;
         }
 
         private void FormProducts_Load(object sender, EventArgs e)
         {
             LoadData();
         }
+
         private void LoadData()
         {
             try
             {
-                var list = logic.Read(null);
+                var list = _logic.Read(null);
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -51,7 +44,7 @@ namespace ComputerShopView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormComputer>();
+            var form = Program.Container.Resolve<FormComputer>();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -62,7 +55,7 @@ namespace ComputerShopView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormComputer>();
+                var form = Program.Container.Resolve<FormComputer>();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -81,7 +74,7 @@ namespace ComputerShopView
                     int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        logic.Delete(new ComputerBindingModel
+                        _logic.Delete(new ComputerBindingModel
                         {
                             Id = id
                         });
@@ -100,7 +93,5 @@ namespace ComputerShopView
         {
             LoadData();
         }
-
-
     }
 }

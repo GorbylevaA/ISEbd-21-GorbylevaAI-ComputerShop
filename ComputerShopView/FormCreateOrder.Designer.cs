@@ -1,5 +1,4 @@
-﻿
-namespace ComputerShopView
+﻿namespace ComputerShopView
 {
     partial class FormCreateOrder
     {
@@ -20,8 +19,6 @@ namespace ComputerShopView
             }
             base.Dispose(disposing);
         }
-
-        #region Windows Form Designer generated code
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -129,18 +126,22 @@ namespace ComputerShopView
             this.Load += new System.EventHandler(this.FormCreateOrder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
-        #endregion
-
         private System.Windows.Forms.ComboBox comboBoxProduct;
+
         private System.Windows.Forms.TextBox textBoxCount;
+
         private System.Windows.Forms.TextBox textBoxSum;
+
         private System.Windows.Forms.Label label1;
+
         private System.Windows.Forms.Label label2;
+
         private System.Windows.Forms.Label label3;
+
         private System.Windows.Forms.Button ButtonSave;
+
         private System.Windows.Forms.Button ButtonCancel;
     }
 }

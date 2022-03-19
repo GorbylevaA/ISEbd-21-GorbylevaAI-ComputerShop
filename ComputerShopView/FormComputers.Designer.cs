@@ -1,5 +1,4 @@
-﻿
-namespace ComputerShopView
+﻿namespace ComputerShopView
 {
     partial class FormComputers
     {
@@ -20,8 +19,6 @@ namespace ComputerShopView
             }
             base.Dispose(disposing);
         }
-
-        #region Windows Form Designer generated code
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -110,15 +107,16 @@ namespace ComputerShopView
             this.Load += new System.EventHandler(this.FormProducts_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
-
         }
 
-        #endregion
-
         private System.Windows.Forms.DataGridView dataGridView;
+
         private System.Windows.Forms.Button buttonUpd;
+
         private System.Windows.Forms.Button buttonDel;
+
         private System.Windows.Forms.Button buttonRef;
+
         private System.Windows.Forms.Button buttonAdd;
     }
 }

@@ -1,5 +1,4 @@
-﻿
-namespace ComputerShopView
+﻿namespace ComputerShopView
 {
     partial class FormComputer
     {
@@ -20,8 +19,6 @@ namespace ComputerShopView
             }
             base.Dispose(disposing);
         }
-
-        #region Windows Form Designer generated code
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -228,25 +225,36 @@ namespace ComputerShopView
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
-        #endregion
-
         private System.Windows.Forms.Label label1;
+
         private System.Windows.Forms.Label label2;
+
         private System.Windows.Forms.TextBox textBoxName;
+
         private System.Windows.Forms.TextBox textBoxPrice;
+
         private System.Windows.Forms.GroupBox groupBoxComponents;
+
         private System.Windows.Forms.DataGridView dataGridView;
+
         private System.Windows.Forms.Button button4;
+
         private System.Windows.Forms.Button button3;
+
         private System.Windows.Forms.Button button2;
+
         private System.Windows.Forms.Button button1;
+
         private System.Windows.Forms.Button button5;
+
         private System.Windows.Forms.Button button6;
+
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }

@@ -1,5 +1,4 @@
-﻿
-namespace ComputerShopView
+﻿namespace ComputerShopView
 {
     partial class FormComponent
     {
@@ -20,8 +19,6 @@ namespace ComputerShopView
             }
             base.Dispose(disposing);
         }
-
-        #region Windows Form Designer generated code
 
         /// <summary>
         ///  Required method for Designer support - do not modify
@@ -86,15 +83,14 @@ namespace ComputerShopView
             this.Load += new System.EventHandler(this.FormComponent_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
-        #endregion
-
         private System.Windows.Forms.TextBox textBoxName;
+
         private System.Windows.Forms.Button ButtonSave;
+
         private System.Windows.Forms.Button ButtonCancel;
+
         private System.Windows.Forms.Label label1;
     }
 }
-

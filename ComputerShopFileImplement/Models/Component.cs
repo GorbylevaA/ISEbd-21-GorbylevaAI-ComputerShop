@@ -1,4 +1,4 @@
-﻿namespace ComputerShopListImplement.Models
+﻿namespace ComputerShopFileImplement.Models
 {
     public class Component
     {
