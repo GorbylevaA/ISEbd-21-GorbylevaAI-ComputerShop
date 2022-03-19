@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-
 
 namespace ComputerShopContracts.ViewModels
 {
     public class ComputerViewModel
     {
         public int Id { get; set; }
+
         [DisplayName("Название компьютера")]
-        public string ProductName { get; set; }
+        public string ComputerName { get; set; }
+
         [DisplayName("Цена")]
         public decimal Price { get; set; }
-      
+
         public Dictionary<int, (string, int)> ComputerComponents { get; set; }
-        
     }
 }

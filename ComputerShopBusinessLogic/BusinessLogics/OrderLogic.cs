@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ComputerShopContracts.BindingModels;
+﻿using ComputerShopContracts.BindingModels;
+using ComputerShopContracts.BusinessLogicsContracts;
+using ComputerShopContracts.Enums;
 using ComputerShopContracts.StoragesContracts;
 using ComputerShopContracts.ViewModels;
-using ComputerShopContracts.Enums;
+using System;
+using System.Collections.Generic;
 
 namespace ComputerShopBusinessLogic.BusinessLogics
 {
-    public class OrderLogic
+    public class OrderLogic : IOrderLogic
     {
         private readonly IOrderStorage _orderStorage;
+
         public OrderLogic(IOrderStorage orderStorage)
         {
             _orderStorage = orderStorage;
         }
+
         public List<OrderViewModel> Read(OrderBindingModel model)
         {
             if (model == null)
@@ -27,6 +29,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
             }
             return _orderStorage.GetFilteredList(model);
         }
+
         public void CreateOrder(CreateOrderBindingModel model)
         {
             _orderStorage.Insert(new OrderBindingModel
@@ -38,6 +41,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
                 Status = OrderStatus.Принят
             });
         }
+
         public void TakeOrderInWork(ChangeStatusBindingModel model)
         {
             var order = _orderStorage.GetElement(new OrderBindingModel { Id = model.OrderId });
@@ -45,7 +49,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
             {
                 throw new Exception("Не найден заказ");
             }
-            if (order.Status != OrderStatus.Принят) 
+            if (order.Status != OrderStatus.Принят)
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
@@ -60,6 +64,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
                 Status = OrderStatus.Выполняется
             });
         }
+
         public void FinishOrder(ChangeStatusBindingModel model)
         {
             var order = _orderStorage.GetElement(new OrderBindingModel { Id = model.OrderId });
@@ -82,6 +87,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
                 Status = OrderStatus.Готов
             });
         }
+
         public void DeliveryOrder(ChangeStatusBindingModel model)
         {
             var order = _orderStorage.GetElement(new OrderBindingModel

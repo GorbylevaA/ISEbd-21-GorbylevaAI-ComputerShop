@@ -1,30 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using ComputerShopContracts.BindingModels;
+﻿using ComputerShopContracts.BindingModels;
 using ComputerShopContracts.BusinessLogicsContracts;
 using ComputerShopContracts.ViewModels;
-using ComputerShopBusinessLogic.BusinessLogics;
-using Unity;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace ComputerShopView
 {
     public partial class FormCreateOrder : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly ComputerLogic _logicP;
-        private readonly OrderLogic _logicO;
-        public FormCreateOrder(ComputerLogic logicP, OrderLogic logicO)
+        private readonly IComputerLogic _logicP;
+
+        private readonly IOrderLogic _logicO;
+
+        public FormCreateOrder(IComputerLogic logicP, IOrderLogic logicO)
         {
             InitializeComponent();
             _logicP = logicP;
             _logicO = logicO;
         }
+
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
             try
@@ -32,7 +27,7 @@ namespace ComputerShopView
                 List<ComputerViewModel> listP = _logicP.Read(null);
                 if (listP != null)
                 {
-                    comboBoxProduct.DisplayMember = "ProductName";
+                    comboBoxProduct.DisplayMember = "ComputerName";
                     comboBoxProduct.ValueMember = "Id";
                     comboBoxProduct.DataSource = listP;
                     comboBoxProduct.SelectedItem = null;
@@ -44,6 +39,7 @@ namespace ComputerShopView
                 MessageBoxIcon.Error);
             }
         }
+
         private void CalcSum()
         {
             if (comboBoxProduct.SelectedValue != null &&
@@ -67,7 +63,6 @@ namespace ComputerShopView
                 }
             }
         }
-
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
@@ -102,6 +97,7 @@ namespace ComputerShopView
                MessageBoxIcon.Error);
             }
         }
+
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
@@ -120,12 +116,10 @@ namespace ComputerShopView
 
         private void textBoxSum_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void comboBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
     }
 }

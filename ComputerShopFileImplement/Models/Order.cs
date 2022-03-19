@@ -1,11 +1,11 @@
 ﻿using ComputerShopContracts.Enums;
 using System;
 
-namespace ComputerShopContracts.BindingModels
+namespace ComputerShopFileImplement.Models
 {
-    public class OrderBindingModel
+    public class Order
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         public int ComputerId { get; set; }
 

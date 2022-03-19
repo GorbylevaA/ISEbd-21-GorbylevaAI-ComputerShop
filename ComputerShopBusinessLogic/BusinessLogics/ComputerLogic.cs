@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ComputerShopContracts.BindingModels;
+﻿using ComputerShopContracts.BindingModels;
+using ComputerShopContracts.BusinessLogicsContracts;
 using ComputerShopContracts.StoragesContracts;
 using ComputerShopContracts.ViewModels;
+using System;
+using System.Collections.Generic;
 
 namespace ComputerShopBusinessLogic.BusinessLogics
 {
-    public class ComputerLogic
+    public class ComputerLogic : IComputerLogic
     {
-        private readonly IComputerStorage _computerStorage; 
+        private readonly IComputerStorage _computerStorage;
+
         public ComputerLogic(IComputerStorage computerStorage)
         {
             _computerStorage = computerStorage;
         }
+
         public List<ComputerViewModel> Read(ComputerBindingModel model)
         {
             if (model == null)
@@ -26,6 +28,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
             }
             return _computerStorage.GetFilteredList(model);
         }
+
         public void CreateOrUpdate(ComputerBindingModel model)
         {
             var element = _computerStorage.GetElement(new ComputerBindingModel { ComputerName = model.ComputerName });
@@ -42,6 +45,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
                 _computerStorage.Insert(model);
             }
         }
+
         public void Delete(ComputerBindingModel model)
         {
             var element = _computerStorage.GetElement(new ComputerBindingModel { Id = model.Id });
@@ -53,4 +57,3 @@ namespace ComputerShopBusinessLogic.BusinessLogics
         }
     }
 }
-

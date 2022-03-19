@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ComputerShopContracts.BindingModels;
+﻿using ComputerShopContracts.BindingModels;
 using ComputerShopContracts.ViewModels;
+using System.Collections.Generic;
 
 namespace ComputerShopContracts.BusinessLogicsContracts
 {
-   public interface IOrderLogic
+    public interface IOrderLogic
     {
         List<OrderViewModel> Read(OrderBindingModel model);
+
         void CreateOrder(CreateOrderBindingModel model);
+
         void TakeOrderInWork(ChangeStatusBindingModel model);
+
         void FinishOrder(ChangeStatusBindingModel model);
+
         void DeliveryOrder(ChangeStatusBindingModel model);
     }
 }

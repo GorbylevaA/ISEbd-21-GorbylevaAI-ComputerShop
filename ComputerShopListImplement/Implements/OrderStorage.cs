@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ComputerShopContracts.BindingModels;
+﻿using ComputerShopContracts.BindingModels;
 using ComputerShopContracts.StoragesContracts;
 using ComputerShopContracts.ViewModels;
 using ComputerShopListImplement.Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ComputerShopListImplement.Implements
@@ -12,6 +11,7 @@ namespace ComputerShopListImplement.Implements
     public class OrderStorage : IOrderStorage
     {
         private readonly DataListSingleton source;
+
         public OrderStorage()
         {
             source = DataListSingleton.GetInstance();
@@ -34,7 +34,7 @@ namespace ComputerShopListImplement.Implements
             return new OrderViewModel
             {
                 Id = order.Id,
-                ProductName = source.Computers.FirstOrDefault(product => product.Id == order.ComputerId)?.ComputerName,
+                ComputerName = source.Computers.FirstOrDefault(computer => computer.Id == order.ComputerId)?.ComputerName,
                 ComputerId = order.ComputerId,
                 Count = order.Count,
                 Sum = order.Sum,

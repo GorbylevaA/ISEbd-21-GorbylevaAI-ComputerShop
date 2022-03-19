@@ -5,16 +5,17 @@ using ComputerShopContracts.ViewModels;
 using System;
 using System.Collections.Generic;
 
-
 namespace ComputerShopBusinessLogic.BusinessLogics
 {
     public class ComponentLogic : IComponentLogic
     {
         private readonly IComponentStorage _componentStorage;
+
         public ComponentLogic(IComponentStorage componentStorage)
         {
             _componentStorage = componentStorage;
         }
+
         public List<ComponentViewModel> Read(ComponentBindingModel model)
         {
             if (model == null)
@@ -28,6 +29,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
             }
             return _componentStorage.GetFilteredList(model);
         }
+
         public void CreateOrUpdate(ComponentBindingModel model)
         {
             var element = _componentStorage.GetElement(new ComponentBindingModel
@@ -47,11 +49,12 @@ namespace ComputerShopBusinessLogic.BusinessLogics
                 _componentStorage.Insert(model);
             }
         }
+
         public void Delete(ComponentBindingModel model)
         {
             var element = _componentStorage.GetElement(new ComponentBindingModel
             {
-                Id =model.Id
+                Id = model.Id
             });
             if (element == null)
             {

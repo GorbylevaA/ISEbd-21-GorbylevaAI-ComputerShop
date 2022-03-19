@@ -1,5 +1,4 @@
-﻿
-namespace ComputerShopView
+﻿namespace ComputerShopView
 {
     partial class FormMain
     {
@@ -20,8 +19,6 @@ namespace ComputerShopView
             }
             base.Dispose(disposing);
         }
-
-        #region Windows Form Designer generated code
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -174,21 +171,28 @@ namespace ComputerShopView
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
-        #endregion
-
         private System.Windows.Forms.Button ButtonCreateOrder;
+
         private System.Windows.Forms.Button ButtonTakeOrderInWork;
+
         private System.Windows.Forms.Button ButtonOrderReady;
+
         private System.Windows.Forms.Button ButtonIssuedOrder;
+
         private System.Windows.Forms.Button ButtonRef;
+
         private System.Windows.Forms.PrintDialog printDialog1;
+
         private System.Windows.Forms.DataGridView dataGridView;
+
         private System.Windows.Forms.MenuStrip menuStrip1;
+
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+
         private System.Windows.Forms.ToolStripMenuItem компонентыToolStripMenuItem;
+
         private System.Windows.Forms.ToolStripMenuItem изделияToolStripMenuItem2;
     }
 }
