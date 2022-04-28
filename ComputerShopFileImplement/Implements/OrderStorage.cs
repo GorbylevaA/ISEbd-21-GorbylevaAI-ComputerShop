@@ -10,16 +10,16 @@ namespace ComputerShopFileImplement.Implements
 {
     public class OrderStorage : IOrderStorage
     {
-        private readonly FileDataListSingleton source;
+        private readonly FileDataListSingleton _source;
 
         public OrderStorage()
         {
-            source = FileDataListSingleton.GetInstance();
+            _source = FileDataListSingleton.GetInstance();
         }
 
         public List<OrderViewModel> GetFullList()
         {
-            return source.Orders
+            return _source.Orders
                 .Select(CreateModel)
                 .ToList();
         }
@@ -31,8 +31,10 @@ namespace ComputerShopFileImplement.Implements
                 return null;
             }
 
-            return source.Orders
-                .Where(recOrder => recOrder.ComputerId == model.ComputerId || (model.DateFrom.HasValue && model.DateTo.HasValue && recOrder.DateCreate >= model.DateFrom && recOrder.DateCreate <= model.DateTo))
+            return _source.Orders
+                .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date)
+                || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date)
+                || (model.ClientId.HasValue && rec.ClientId == model.ClientId))
                 .Select(CreateModel)
                 .ToList();
         }
@@ -44,46 +46,47 @@ namespace ComputerShopFileImplement.Implements
                 return null;
             }
 
-            Order order = source.Orders.FirstOrDefault(recOder => recOder.Id == model.Id);
+            Order order = _source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
             return order != null ? CreateModel(order) : null;
         }
 
         public void Insert(OrderBindingModel model)
         {
-            int maxId = source.Orders.Count > 0 ? source.Orders.Max(recOder => recOder.Id) : 0;
-            var order = new Order { Id = maxId + 1 };
-            source.Orders.Add(CreateModel(model, order));
+            int maxId = _source.Orders.Count > 0 ? _source.Orders.Max(rec => rec.Id) : 0;
+            var element = new Order { Id = maxId + 1 };
+            _source.Orders.Add(CreateModel(model, element));
         }
 
         public void Update(OrderBindingModel model)
         {
-            Order order = source.Orders.FirstOrDefault(recOder => recOder.Id == model.Id);
-            if (order == null)
+            Order element = _source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element == null)
             {
-                throw new Exception("Заказ не найден");
+                throw new Exception("Элемент не найден");
             }
-            CreateModel(model, order);
+            CreateModel(model, element);
         }
 
         public void Delete(OrderBindingModel model)
         {
-            Order order = source.Orders.FirstOrDefault(recOrder => recOrder.Id == model.Id);
-            if (order != null)
+            Order element = _source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element != null)
             {
-                source.Orders.Remove(order);
+                _source.Orders.Remove(element);
             }
             else
             {
-                throw new Exception("Заказ не найден");
+                throw new Exception("Элемент не найден");
             }
         }
 
         private Order CreateModel(OrderBindingModel model, Order order)
         {
+            order.ClientId = (int)model.ClientId;
             order.ComputerId = model.ComputerId;
             order.Count = model.Count;
-            order.Sum = model.Sum;
             order.Status = model.Status;
+            order.Sum = model.Sum;
             order.DateCreate = model.DateCreate;
             order.DateImplement = model.DateImplement;
             return order;
@@ -94,13 +97,15 @@ namespace ComputerShopFileImplement.Implements
             return new OrderViewModel
             {
                 Id = order.Id,
-                ComputerName = source.Computers.FirstOrDefault(computer => computer.Id == order.ComputerId)?.ComputerName,
+                ClientId = order.ClientId,
+                ClientFIO = _source.Clients.FirstOrDefault(rec => rec.Id == order.ClientId)?.ClientFIO,
                 ComputerId = order.ComputerId,
+                ComputerName = _source.Computers.FirstOrDefault(p => p.Id == order.ComputerId)?.ComputerName,
                 Count = order.Count,
-                Sum = order.Sum,
                 Status = order.Status,
+                Sum = order.Sum,
                 DateCreate = order.DateCreate,
-                DateImplement = order.DateImplement
+                DateImplement = order.DateImplement,
             };
         }
     }

@@ -34,6 +34,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
         {
             _orderStorage.Insert(new OrderBindingModel
             {
+                ClientId = model.ClientId,
                 ComputerId = model.ComputerId,
                 Count = model.Count,
                 Sum = model.Sum,
@@ -56,6 +57,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 ComputerId = order.ComputerId,
                 Count = order.Count,
                 Sum = order.Sum,
@@ -79,6 +81,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 ComputerId = order.ComputerId,
                 Count = order.Count,
                 Sum = order.Sum,
@@ -105,6 +108,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
             _orderStorage.Update(new OrderBindingModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 ComputerId = order.ComputerId,
                 Count = order.Count,
                 Sum = order.Sum,
