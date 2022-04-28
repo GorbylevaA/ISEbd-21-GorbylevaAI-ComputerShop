@@ -27,10 +27,10 @@
         private void InitializeComponent()
         {
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.buttonUpd = new System.Windows.Forms.Button();
-            this.buttonDel = new System.Windows.Forms.Button();
-            this.buttonRef = new System.Windows.Forms.Button();
-            this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonEditComputer = new System.Windows.Forms.Button();
+            this.buttonDeleteComputer = new System.Windows.Forms.Button();
+            this.buttonRefreshComputers = new System.Windows.Forms.Button();
+            this.buttonAddComputer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,84 +39,85 @@
             this.dataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(22, 28);
-            this.dataGridView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dataGridView.Location = new System.Drawing.Point(14, 18);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 82;
             this.dataGridView.RowTemplate.Height = 25;
-            this.dataGridView.Size = new System.Drawing.Size(1138, 909);
+            this.dataGridView.Size = new System.Drawing.Size(700, 568);
             this.dataGridView.TabIndex = 0;
             // 
-            // buttonUpd
+            // buttonEditComputer
             // 
-            this.buttonUpd.Location = new System.Drawing.Point(1172, 90);
-            this.buttonUpd.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.buttonUpd.Name = "buttonUpd";
-            this.buttonUpd.Size = new System.Drawing.Size(139, 49);
-            this.buttonUpd.TabIndex = 2;
-            this.buttonUpd.Text = "Изменить";
-            this.buttonUpd.UseVisualStyleBackColor = true;
-            this.buttonUpd.Click += new System.EventHandler(this.buttonUpd_Click);
+            this.buttonEditComputer.Location = new System.Drawing.Point(721, 67);
+            this.buttonEditComputer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonEditComputer.Name = "buttonEditComputer";
+            this.buttonEditComputer.Size = new System.Drawing.Size(180, 44);
+            this.buttonEditComputer.TabIndex = 2;
+            this.buttonEditComputer.Text = "Изменить";
+            this.buttonEditComputer.UseVisualStyleBackColor = true;
+            this.buttonEditComputer.Click += new System.EventHandler(this.buttonUpd_Click);
             // 
-            // buttonDel
+            // buttonDeleteComputer
             // 
-            this.buttonDel.Location = new System.Drawing.Point(1172, 151);
-            this.buttonDel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.buttonDel.Name = "buttonDel";
-            this.buttonDel.Size = new System.Drawing.Size(139, 49);
-            this.buttonDel.TabIndex = 3;
-            this.buttonDel.Text = "Удалить";
-            this.buttonDel.UseVisualStyleBackColor = true;
-            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
+            this.buttonDeleteComputer.Location = new System.Drawing.Point(722, 119);
+            this.buttonDeleteComputer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDeleteComputer.Name = "buttonDeleteComputer";
+            this.buttonDeleteComputer.Size = new System.Drawing.Size(179, 36);
+            this.buttonDeleteComputer.TabIndex = 3;
+            this.buttonDeleteComputer.Text = "Удалить";
+            this.buttonDeleteComputer.UseVisualStyleBackColor = true;
+            this.buttonDeleteComputer.Click += new System.EventHandler(this.buttonDel_Click);
             // 
-            // buttonRef
+            // buttonRefreshComputers
             // 
-            this.buttonRef.Location = new System.Drawing.Point(1172, 213);
-            this.buttonRef.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.buttonRef.Name = "buttonRef";
-            this.buttonRef.Size = new System.Drawing.Size(139, 49);
-            this.buttonRef.TabIndex = 4;
-            this.buttonRef.Text = "Обновить";
-            this.buttonRef.UseVisualStyleBackColor = true;
-            this.buttonRef.Click += new System.EventHandler(this.buttonRef_Click);
+            this.buttonRefreshComputers.Location = new System.Drawing.Point(722, 163);
+            this.buttonRefreshComputers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRefreshComputers.Name = "buttonRefreshComputers";
+            this.buttonRefreshComputers.Size = new System.Drawing.Size(179, 40);
+            this.buttonRefreshComputers.TabIndex = 4;
+            this.buttonRefreshComputers.Text = "Обновить";
+            this.buttonRefreshComputers.UseVisualStyleBackColor = true;
+            this.buttonRefreshComputers.Click += new System.EventHandler(this.buttonRef_Click);
             // 
-            // buttonAdd
+            // buttonAddComputer
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(1172, 28);
-            this.buttonAdd.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(139, 49);
-            this.buttonAdd.TabIndex = 5;
-            this.buttonAdd.Text = "Добавить";
-            this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            this.buttonAddComputer.Location = new System.Drawing.Point(721, 18);
+            this.buttonAddComputer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAddComputer.Name = "buttonAddComputer";
+            this.buttonAddComputer.Size = new System.Drawing.Size(180, 41);
+            this.buttonAddComputer.TabIndex = 5;
+            this.buttonAddComputer.Text = "Добавить";
+            this.buttonAddComputer.UseVisualStyleBackColor = true;
+            this.buttonAddComputer.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // FormComputers
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1486, 960);
-            this.Controls.Add(this.buttonAdd);
-            this.Controls.Add(this.buttonRef);
-            this.Controls.Add(this.buttonDel);
-            this.Controls.Add(this.buttonUpd);
+            this.ClientSize = new System.Drawing.Size(914, 600);
+            this.Controls.Add(this.buttonAddComputer);
+            this.Controls.Add(this.buttonRefreshComputers);
+            this.Controls.Add(this.buttonDeleteComputer);
+            this.Controls.Add(this.buttonEditComputer);
             this.Controls.Add(this.dataGridView);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormComputers";
             this.Text = "Компьютеры";
             this.Load += new System.EventHandler(this.FormProducts_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.DataGridView dataGridView;
 
-        private System.Windows.Forms.Button buttonUpd;
+        private System.Windows.Forms.Button buttonEditComputer;
 
-        private System.Windows.Forms.Button buttonDel;
+        private System.Windows.Forms.Button buttonDeleteComputer;
 
-        private System.Windows.Forms.Button buttonRef;
+        private System.Windows.Forms.Button buttonRefreshComputers;
 
-        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Button buttonAddComputer;
     }
 }

@@ -32,7 +32,7 @@ namespace ComputerShopFileImplement.Implements
             }
 
             return source.Orders
-                .Where(recOrder => recOrder.ComputerId == model.ComputerId)
+                .Where(recOrder => recOrder.ComputerId == model.ComputerId || (model.DateFrom.HasValue && model.DateTo.HasValue && recOrder.DateCreate >= model.DateFrom && recOrder.DateCreate <= model.DateTo))
                 .Select(CreateModel)
                 .ToList();
         }

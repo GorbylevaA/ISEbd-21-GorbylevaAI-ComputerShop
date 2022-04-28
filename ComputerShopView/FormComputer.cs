@@ -40,8 +40,8 @@ namespace ComputerShopView
                     })?[0];
                     if (view != null)
                     {
-                        textBoxName.Text = view.ComputerName;
-                        textBoxPrice.Text = view.Price.ToString();
+                        textBoxComputerName.Text = view.ComputerName;
+                        textBoxComputerPrice.Text = view.Price.ToString();
                         computerComponent = view.ComputerComponents;
                         LoadData();
                     }
@@ -138,14 +138,14 @@ namespace ComputerShopView
             LoadData();
         }
 
-        private void ButtonSave_Click(object sender, EventArgs e)
+        private void buttonSaveComputer_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxName.Text))
+            if (string.IsNullOrEmpty(textBoxComputerName.Text))
             {
                 MessageBox.Show("Заполните название", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (string.IsNullOrEmpty(textBoxPrice.Text))
+            if (string.IsNullOrEmpty(textBoxComputerPrice.Text))
             {
                 MessageBox.Show("Заполните цену", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
@@ -162,8 +162,8 @@ namespace ComputerShopView
                 logic.CreateOrUpdate(new ComputerBindingModel
                 {
                     Id = id,
-                    ComputerName = textBoxName.Text,
-                    Price = Convert.ToDecimal(textBoxPrice.Text),
+                    ComputerName = textBoxComputerName.Text,
+                    Price = Convert.ToDecimal(textBoxComputerPrice.Text),
                     ComputerComponents = computerComponent
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
@@ -178,22 +178,10 @@ namespace ComputerShopView
             }
         }
 
-        private void ButtonCancel_Click(object sender, EventArgs e)
+        private void buttonCancel_Click_1(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
-        }
-
-        private void textBoxName_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void textBoxPrice_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
         }
     }
 }

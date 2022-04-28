@@ -31,7 +31,7 @@ namespace ComputerShopView
                     var view = _logic.Read(new ComponentBindingModel { Id = id })?[0];
                     if (view != null)
                     {
-                        textBoxName.Text = view.ComponentName;
+                        textBoxComponentName.Text = view.ComponentName;
                     }
                 }
                 catch (Exception ex)
@@ -50,7 +50,7 @@ namespace ComputerShopView
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxName.Text))
+            if (string.IsNullOrEmpty(textBoxComponentName.Text))
             {
                 MessageBox.Show("Заполните название", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
@@ -61,7 +61,7 @@ namespace ComputerShopView
                 _logic.CreateOrUpdate(new ComponentBindingModel
                 {
                     Id = id,
-                    ComponentName = textBoxName.Text
+                    ComponentName = textBoxComponentName.Text
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);
