@@ -16,16 +16,20 @@ namespace ComputerShopDatabaseImplement.Implements
             using (var context = new ComputerShopDatabase())
             {
                 return context.Orders
+                    .Include(rec => rec.Computer)
+                    .Include(rec => rec.Client)
                     .Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,
                         ComputerId = rec.ComputerId,
-                        ComputerName = context.Computers.Include(pr => pr.Orders).FirstOrDefault(pr => pr.Id == rec.ComputerId).ComputerName,
+                        ComputerName = rec.Computer.ComputerName,
                         Count = rec.Count,
                         Sum = rec.Sum,
                         Status = rec.Status,
                         DateCreate = rec.DateCreate,
                         DateImplement = rec.DateImplement,
+                        ClientId = rec.ClientId,
+                        ClientFIO = rec.Client.ClientFIO
                     })
                     .ToList();
             }
@@ -42,17 +46,22 @@ namespace ComputerShopDatabaseImplement.Implements
             {
                 return context.Orders
                     .Include(rec => rec.Computer)
-                    .Where(rec => rec.ComputerId == model.ComputerId || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo))
+                    .Include(rec => rec.Client)
+                    .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date)
+                    || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date)
+                    || (model.ClientId.HasValue && rec.ClientId == model.ClientId))
                     .Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,
                         ComputerId = rec.ComputerId,
-                        ComputerName = context.Computers.Include(pr => pr.Orders).FirstOrDefault(pr => pr.Id == rec.ComputerId).ComputerName,
+                        ComputerName = rec.Computer.ComputerName,
                         Count = rec.Count,
                         Sum = rec.Sum,
                         Status = rec.Status,
                         DateCreate = rec.DateCreate,
                         DateImplement = rec.DateImplement,
+                        ClientId = rec.ClientId,
+                        ClientFIO = rec.Client.ClientFIO
                     })
                     .ToList();
             }
@@ -67,18 +76,23 @@ namespace ComputerShopDatabaseImplement.Implements
 
             using (var context = new ComputerShopDatabase())
             {
-                Order order = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+                Order order = context.Orders
+                    .Include(rec => rec.Computer)
+                    .Include(rec => rec.Client)
+                    .FirstOrDefault(rec => rec.Id == model.Id);
                 return order != null ?
                 new OrderViewModel
                 {
                     Id = order.Id,
                     ComputerId = order.ComputerId,
-                    ComputerName = context.Computers.Include(pr => pr.Orders).FirstOrDefault(rec => rec.Id == order.ComputerId)?.ComputerName,
+                    ComputerName = order.Computer.ComputerName,
                     Count = order.Count,
                     Sum = order.Sum,
                     Status = order.Status,
                     DateCreate = order.DateCreate,
                     DateImplement = order.DateImplement,
+                    ClientId = order.ClientId,
+                    ClientFIO = order.Client.ClientFIO
                 } :
                 null;
             }
@@ -96,7 +110,9 @@ namespace ComputerShopDatabaseImplement.Implements
                     Status = model.Status,
                     DateCreate = model.DateCreate,
                     DateImplement = model.DateImplement,
+                    ClientId = model.ClientId.Value
                 };
+
                 context.Orders.Add(order);
                 context.SaveChanges();
                 CreateModel(model, order);
@@ -119,6 +135,7 @@ namespace ComputerShopDatabaseImplement.Implements
                 order.Status = model.Status;
                 order.DateCreate = model.DateCreate;
                 order.DateImplement = model.DateImplement;
+                order.ClientId = model.ClientId.Value;
 
                 CreateModel(model, order);
                 context.SaveChanges();

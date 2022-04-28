@@ -4,52 +4,24 @@ using ComputerShopContracts.ViewModels;
 using ComputerShopListImplement.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ComputerShopListImplement.Implements
 {
     public class OrderStorage : IOrderStorage
     {
-        private readonly DataListSingleton source;
+        private readonly DataListSingleton _source;
 
         public OrderStorage()
         {
-            source = DataListSingleton.GetInstance();
-        }
-
-        private Order CreateModel(OrderBindingModel model, Order order)
-        {
-            order.ComputerId = model.ComputerId;
-            order.Count = model.Count;
-            order.Sum = model.Sum;
-            order.Status = model.Status;
-            order.DateCreate = model.DateCreate;
-            order.DateImplement = model.DateImplement;
-
-            return order;
-        }
-
-        private OrderViewModel CreateModel(Order order)
-        {
-            return new OrderViewModel
-            {
-                Id = order.Id,
-                ComputerName = source.Computers.FirstOrDefault(computer => computer.Id == order.ComputerId)?.ComputerName,
-                ComputerId = order.ComputerId,
-                Count = order.Count,
-                Sum = order.Sum,
-                Status = order.Status,
-                DateCreate = order.DateCreate,
-                DateImplement = order.DateImplement
-            };
+            _source = DataListSingleton.GetInstance();
         }
 
         public List<OrderViewModel> GetFullList()
         {
             List<OrderViewModel> result = new List<OrderViewModel>();
-            foreach (var order in source.Orders)
+            foreach (var component in _source.Orders)
             {
-                result.Add(CreateModel(order));
+                result.Add(CreateModel(component));
             }
             return result;
         }
@@ -61,9 +33,11 @@ namespace ComputerShopListImplement.Implements
                 return null;
             }
             List<OrderViewModel> result = new List<OrderViewModel>();
-            foreach (var order in source.Orders)
+            foreach (var order in _source.Orders)
             {
-                if (order.ComputerId == model.ComputerId || (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo))
+                if ((!model.DateFrom.HasValue && !model.DateTo.HasValue && order.DateCreate.Date == model.DateCreate.Date)
+                    || (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate.Date >= model.DateFrom.Value.Date && order.DateCreate.Date <= model.DateTo.Value.Date)
+                    || (model.ClientId.HasValue && order.ClientId == model.ClientId))
                 {
                     result.Add(CreateModel(order));
                 }
@@ -77,11 +51,11 @@ namespace ComputerShopListImplement.Implements
             {
                 return null;
             }
-            foreach (var order in source.Orders)
+            foreach (var Order in _source.Orders)
             {
-                if (order.Id == model.Id)
+                if (Order.Id == model.Id)
                 {
-                    return CreateModel(order);
+                    return CreateModel(Order);
                 }
             }
             return null;
@@ -89,49 +63,91 @@ namespace ComputerShopListImplement.Implements
 
         public void Insert(OrderBindingModel model)
         {
-            Order tempOrder = new Order
+            Order tempOrder = new Order { Id = 1 };
+            foreach (var Order in _source.Orders)
             {
-                Id = 1
-            };
-            foreach (var order in source.Orders)
-            {
-                if (order.Id >= tempOrder.Id)
+                if (Order.Id >= tempOrder.Id)
                 {
-                    tempOrder.Id = order.Id + 1;
+                    tempOrder.Id = Order.Id + 1;
                 }
             }
-            source.Orders.Add(CreateModel(model, tempOrder));
+            _source.Orders.Add(CreateModel(model, tempOrder));
         }
 
         public void Update(OrderBindingModel model)
         {
-            Order tempOrder = null;
-
-            foreach (var order in source.Orders)
+            Order tmpOrder = null;
+            foreach (var Order in _source.Orders)
             {
-                if (order.Id == model.Id)
+                if (Order.Id == model.Id)
                 {
-                    tempOrder = order;
+                    tmpOrder = Order;
                 }
             }
-            if (tempOrder == null)
+            if (tmpOrder == null)
             {
                 throw new Exception("Элемент не найден");
             }
-            CreateModel(model, tempOrder);
+            CreateModel(model, tmpOrder);
         }
 
         public void Delete(OrderBindingModel model)
         {
-            for (int i = 0; i < source.Orders.Count; ++i)
+            for (int i = 0; i < _source.Orders.Count; ++i)
             {
-                if (source.Orders[i].Id == model.Id)
+                if (_source.Orders[i].Id == model.Id)
                 {
-                    source.Orders.RemoveAt(i);
+                    _source.Orders.RemoveAt(i);
                     return;
                 }
             }
             throw new Exception("Элемент не найден");
+        }
+
+        private Order CreateModel(OrderBindingModel model, Order order)
+        {
+            order.ComputerId = model.ComputerId;
+            order.Count = model.Count;
+            order.Status = model.Status;
+            order.Sum = model.Sum;
+            order.DateCreate = model.DateCreate;
+            order.DateImplement = model.DateImplement;
+            return order;
+        }
+
+        private OrderViewModel CreateModel(Order order)
+        {
+            string computerName = "";
+            foreach (var computer in _source.Computers)
+            {
+                if (order.ComputerId == computer.Id)
+                {
+                    computerName = computer.ComputerName;
+                    break;
+                }
+            }
+            string clientFIO = null;
+            foreach (var client in _source.Clients)
+            {
+                if (client.Id == order.ClientId)
+                {
+                    clientFIO = client.ClientFIO;
+                    break;
+                }
+            }
+            return new OrderViewModel
+            {
+                Id = order.Id,
+                ClientId = order.ClientId,
+                ClientFIO = clientFIO,
+                ComputerId = order.ComputerId,
+                ComputerName = computerName,
+                Count = order.Count,
+                Status = order.Status,
+                Sum = order.Sum,
+                DateCreate = order.DateCreate,
+                DateImplement = order.DateImplement,
+            };
         }
     }
 }

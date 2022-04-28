@@ -8,7 +8,9 @@ namespace ComputerShopDatabaseImplement.Models
     {
         public int Id { get; set; }
 
-        public int ComputerId { get; set; } 
+        public int ClientId { get; set; }
+
+        public int ComputerId { get; set; }
 
         [Required]
         public int Count { get; set; }
@@ -25,5 +27,7 @@ namespace ComputerShopDatabaseImplement.Models
         public DateTime? DateImplement { get; set; }
 
         public virtual Computer Computer { get; set; }
+
+        public virtual Client Client { get; set; }
     }
 }

@@ -13,17 +13,29 @@ namespace ComputerShopView
 
         private readonly IOrderLogic _logicO;
 
-        public FormCreateOrder(IComputerLogic logicP, IOrderLogic logicO)
+        private readonly IClientLogic _logicС;
+
+        public FormCreateOrder(IComputerLogic logicP, IOrderLogic logicO, IClientLogic logicC)
         {
             InitializeComponent();
             _logicP = logicP;
             _logicO = logicO;
+            _logicС = logicC;
         }
 
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
             try
             {
+                List<ClientViewModel> clientsList = _logicС.Read(null);
+                if (clientsList != null)
+                {
+                    comboBoxClient.DisplayMember = "ClientFIO";
+                    comboBoxClient.ValueMember = "Id";
+                    comboBoxClient.DataSource = clientsList;
+                    comboBoxClient.SelectedItem = null;
+                }
+
                 List<ComputerViewModel> listP = _logicP.Read(null);
                 if (listP != null)
                 {
@@ -82,6 +94,7 @@ namespace ComputerShopView
             {
                 _logicO.CreateOrder(new CreateOrderBindingModel
                 {
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     ComputerId = Convert.ToInt32(comboBoxProduct.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
