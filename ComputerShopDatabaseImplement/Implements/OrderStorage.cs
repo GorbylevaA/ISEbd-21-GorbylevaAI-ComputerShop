@@ -41,7 +41,8 @@ namespace ComputerShopDatabaseImplement.Implements
             using (var context = new ComputerShopDatabase())
             {
                 return context.Orders
-                    .Where(rec => rec.ComputerId == model.ComputerId)
+                    .Include(rec => rec.Computer)
+                    .Where(rec => rec.ComputerId == model.ComputerId || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo))
                     .Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,

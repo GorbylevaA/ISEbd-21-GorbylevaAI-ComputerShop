@@ -1,4 +1,6 @@
 using ComputerShopBusinessLogic.BusinessLogics;
+using ComputerShopBusinessLogic.OfficePackage;
+using ComputerShopBusinessLogic.OfficePackage.Implements;
 using ComputerShopContracts.BusinessLogicsContracts;
 using ComputerShopContracts.StoragesContracts;
 using ComputerShopDatabaseImplement.Implements;
@@ -49,6 +51,14 @@ namespace ComputerShopView
             currentContainer.RegisterType<IOrderLogic, OrderLogic>(new
             HierarchicalLifetimeManager());
             currentContainer.RegisterType<IComputerLogic, ComputerLogic>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IReportLogic, ReportLogic>(new 
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<AbstractSaveToExcel, SaveToExcel>(new 
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<AbstractSaveToWord, SaveToWord>(new 
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<AbstractSaveToPdf, SaveToPdf>(new 
             HierarchicalLifetimeManager());
             return currentContainer;
         }

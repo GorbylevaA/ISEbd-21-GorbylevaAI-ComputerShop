@@ -26,7 +26,9 @@
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="3.1.22" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.22" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.22" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
+    <PackageReference Include="Microsoft.SqlServer.Types" Version="14.0.1016.290" />
+    <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.16" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.7.0" />
     <PackageReference Include="Unity" Version="5.11.10" />
   </ItemGroup>
 
@@ -34,6 +36,10 @@
     <ProjectReference Include="..\ComputerShopBusinessLogic\ComputerShopBusinessLogic.csproj" />
     <ProjectReference Include="..\ComputerShopContracts\ComputerShopContracts.csproj" />
     <ProjectReference Include="..\ComputerShopDatabaseImplement\ComputerShopDatabaseImplement.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>
