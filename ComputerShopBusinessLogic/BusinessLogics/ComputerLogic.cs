@@ -4,10 +4,11 @@ using System.Text;
 using ComputerShopContracts.BindingModels;
 using ComputerShopContracts.StoragesContracts;
 using ComputerShopContracts.ViewModels;
+using ComputerShopContracts.BusinessLogicsContracts;
 
 namespace ComputerShopBusinessLogic.BusinessLogics
 {
-    public class ComputerLogic
+    public class ComputerLogic : IComputerLogic
     {
         private readonly IComputerStorage _computerStorage; 
         public ComputerLogic(IComputerStorage computerStorage)

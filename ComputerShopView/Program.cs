@@ -1,7 +1,7 @@
+using ComputerShopListImplement.Implements;
 using ComputerShopBusinessLogic.BusinessLogics;
 using ComputerShopContracts.BusinessLogicsContracts;
 using ComputerShopContracts.StoragesContracts;
-using ComputerShopListImplement.Implements;
 using System;
 using System.Windows.Forms;
 using Unity;
@@ -13,43 +13,37 @@ namespace ComputerShopView
 {
     static class Program
     {
-        private static IUnityContainer container = null;
-        public static IUnityContainer Container
-        {
-            get
-            {
-                if (container == null)
-                {
-                    container = BuildUnityContainer();
-                }
-                return container;
-            }
-        }
+    
+    
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            var container = BuildUnityContainer();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(Container.Resolve<FormMain>());
+            Application.Run(container.Resolve<FormMain>());
         }
         private static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
-            currentContainer.RegisterType<IComponentStorage,
-            ComponentStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IComponentStorage, ComponentStorage>(new
+            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IOrderStorage, OrderStorage>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IWareHouseStorage, WareHouseStorage>(new
             HierarchicalLifetimeManager());
             currentContainer.RegisterType<IComputerStorage, ProductStorage>(new
             HierarchicalLifetimeManager());
-            currentContainer.RegisterType< ComponentLogic>(new
+            currentContainer.RegisterType<IComponentLogic, ComponentLogic>(new
             HierarchicalLifetimeManager());
-            currentContainer.RegisterType< OrderLogic>(new
+            currentContainer.RegisterType<IOrderLogic, OrderLogic>(new
             HierarchicalLifetimeManager());
-            currentContainer.RegisterType< ComputerLogic>(new
+            currentContainer.RegisterType<IComputerLogic, ComputerLogic>(new
+            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IWareHouseLogic, WareHouseLogic>(new
             HierarchicalLifetimeManager());
             return currentContainer;
         }

@@ -5,10 +5,11 @@ using ComputerShopContracts.BindingModels;
 using ComputerShopContracts.StoragesContracts;
 using ComputerShopContracts.ViewModels;
 using ComputerShopContracts.Enums;
+using ComputerShopContracts.BusinessLogicsContracts;
 
 namespace ComputerShopBusinessLogic.BusinessLogics
 {
-    public class OrderLogic
+    public class OrderLogic : IOrderLogic
     {
         private readonly IOrderStorage _orderStorage;
         public OrderLogic(IOrderStorage orderStorage)

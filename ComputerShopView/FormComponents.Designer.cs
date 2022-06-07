@@ -40,7 +40,7 @@ namespace ComputerShopView
             // ButtonAdd
             // 
             this.ButtonAdd.Location = new System.Drawing.Point(838, 26);
-            this.ButtonAdd.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ButtonAdd.Margin = new System.Windows.Forms.Padding(6);
             this.ButtonAdd.Name = "ButtonAdd";
             this.ButtonAdd.Size = new System.Drawing.Size(139, 85);
             this.ButtonAdd.TabIndex = 0;
@@ -51,7 +51,7 @@ namespace ComputerShopView
             // ButtonUpd
             // 
             this.ButtonUpd.Location = new System.Drawing.Point(838, 124);
-            this.ButtonUpd.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ButtonUpd.Margin = new System.Windows.Forms.Padding(6);
             this.ButtonUpd.Name = "ButtonUpd";
             this.ButtonUpd.Size = new System.Drawing.Size(139, 85);
             this.ButtonUpd.TabIndex = 1;
@@ -62,7 +62,7 @@ namespace ComputerShopView
             // ButtonDel
             // 
             this.ButtonDel.Location = new System.Drawing.Point(838, 222);
-            this.ButtonDel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ButtonDel.Margin = new System.Windows.Forms.Padding(6);
             this.ButtonDel.Name = "ButtonDel";
             this.ButtonDel.Size = new System.Drawing.Size(139, 85);
             this.ButtonDel.TabIndex = 2;
@@ -73,7 +73,7 @@ namespace ComputerShopView
             // ButtonRef
             // 
             this.ButtonRef.Location = new System.Drawing.Point(838, 320);
-            this.ButtonRef.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ButtonRef.Margin = new System.Windows.Forms.Padding(6);
             this.ButtonRef.Name = "ButtonRef";
             this.ButtonRef.Size = new System.Drawing.Size(139, 85);
             this.ButtonRef.TabIndex = 3;
@@ -87,7 +87,7 @@ namespace ComputerShopView
             this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Location = new System.Drawing.Point(22, 26);
-            this.dataGridView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 82;
             this.dataGridView.RowTemplate.Height = 25;
@@ -98,13 +98,14 @@ namespace ComputerShopView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1112, 789);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.ButtonRef);
             this.Controls.Add(this.ButtonDel);
             this.Controls.Add(this.ButtonUpd);
             this.Controls.Add(this.ButtonAdd);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FormComponents";
             this.Text = "Компоненты";
             this.Load += new System.EventHandler(this.FormComponents_Load);

@@ -42,60 +42,67 @@ namespace ComputerShopView
             // comboBoxProduct
             // 
             this.comboBoxProduct.FormattingEnabled = true;
-            this.comboBoxProduct.Location = new System.Drawing.Point(108, 25);
+            this.comboBoxProduct.Location = new System.Drawing.Point(201, 53);
+            this.comboBoxProduct.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.comboBoxProduct.Name = "comboBoxProduct";
-            this.comboBoxProduct.Size = new System.Drawing.Size(302, 23);
+            this.comboBoxProduct.Size = new System.Drawing.Size(557, 40);
             this.comboBoxProduct.TabIndex = 0;
             this.comboBoxProduct.SelectedIndexChanged += new System.EventHandler(this.comboBoxProduct_SelectedIndexChanged);
             // 
             // textBoxCount
             // 
-            this.textBoxCount.Location = new System.Drawing.Point(108, 67);
+            this.textBoxCount.Location = new System.Drawing.Point(201, 143);
+            this.textBoxCount.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.textBoxCount.Name = "textBoxCount";
-            this.textBoxCount.Size = new System.Drawing.Size(302, 23);
+            this.textBoxCount.Size = new System.Drawing.Size(557, 39);
             this.textBoxCount.TabIndex = 1;
             this.textBoxCount.TextChanged += new System.EventHandler(this.textBoxCount_TextChanged_1);
             // 
             // textBoxSum
             // 
-            this.textBoxSum.Location = new System.Drawing.Point(108, 112);
+            this.textBoxSum.Location = new System.Drawing.Point(201, 239);
+            this.textBoxSum.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.textBoxSum.Name = "textBoxSum";
-            this.textBoxSum.Size = new System.Drawing.Size(302, 23);
+            this.textBoxSum.Size = new System.Drawing.Size(557, 39);
             this.textBoxSum.TabIndex = 2;
             this.textBoxSum.TextChanged += new System.EventHandler(this.textBoxSum_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 28);
+            this.label1.Location = new System.Drawing.Point(24, 60);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 15);
+            this.label1.Size = new System.Drawing.Size(147, 32);
             this.label1.TabIndex = 3;
             this.label1.Text = "Компьютер:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 75);
+            this.label2.Location = new System.Drawing.Point(22, 160);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 15);
+            this.label2.Size = new System.Drawing.Size(149, 32);
             this.label2.TabIndex = 4;
             this.label2.Text = "Количество:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 120);
+            this.label3.Location = new System.Drawing.Point(24, 256);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 15);
+            this.label3.Size = new System.Drawing.Size(92, 32);
             this.label3.TabIndex = 5;
             this.label3.Text = "Сумма:";
             // 
             // ButtonSave
             // 
-            this.ButtonSave.Location = new System.Drawing.Point(230, 141);
+            this.ButtonSave.Location = new System.Drawing.Point(427, 301);
+            this.ButtonSave.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.ButtonSave.Name = "ButtonSave";
-            this.ButtonSave.Size = new System.Drawing.Size(87, 23);
+            this.ButtonSave.Size = new System.Drawing.Size(162, 49);
             this.ButtonSave.TabIndex = 6;
             this.ButtonSave.Text = "Сохранить";
             this.ButtonSave.UseVisualStyleBackColor = true;
@@ -103,9 +110,10 @@ namespace ComputerShopView
             // 
             // ButtonCancel
             // 
-            this.ButtonCancel.Location = new System.Drawing.Point(323, 141);
+            this.ButtonCancel.Location = new System.Drawing.Point(600, 301);
+            this.ButtonCancel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.ButtonCancel.Name = "ButtonCancel";
-            this.ButtonCancel.Size = new System.Drawing.Size(87, 23);
+            this.ButtonCancel.Size = new System.Drawing.Size(162, 49);
             this.ButtonCancel.TabIndex = 7;
             this.ButtonCancel.Text = "Отмена";
             this.ButtonCancel.UseVisualStyleBackColor = true;
@@ -113,9 +121,10 @@ namespace ComputerShopView
             // 
             // FormCreateOrder
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 182);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(774, 388);
             this.Controls.Add(this.ButtonCancel);
             this.Controls.Add(this.ButtonSave);
             this.Controls.Add(this.label3);
@@ -124,6 +133,7 @@ namespace ComputerShopView
             this.Controls.Add(this.textBoxSum);
             this.Controls.Add(this.textBoxCount);
             this.Controls.Add(this.comboBoxProduct);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "FormCreateOrder";
             this.Text = "Заказ";
             this.Load += new System.EventHandler(this.FormCreateOrder_Load);

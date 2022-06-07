@@ -212,6 +212,7 @@ namespace ComputerShopView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1145, 934);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
