@@ -9,7 +9,7 @@ namespace ComputerShopDatabaseImplement
         {
             if (optionsBuilder.IsConfigured == false)
             {
-                optionsBuilder.UseSqlServer(@"Server=localhost;Database=computershop7base;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=localhost;Database=computershop8;Trusted_Connection=True;");
             }
             base.OnConfiguring(optionsBuilder);
         }
