@@ -139,5 +139,14 @@ namespace ComputerShopClientApp.Controllers
             ComputerViewModel _computer = APIClient.GetRequest<ComputerViewModel>($"api/main/getcomputer?computerId={computer}");
             return count * _computer.Price;
         }
+
+        public IActionResult Mail()
+        {
+            if (Program.Client == null)
+            {
+                return Redirect("~/Home/Enter");
+            }
+            return View(APIClient.GetRequest<List<MessageInfoViewModel>>($"api/client/getmessages?clientId={Program.Client.Id}"));
+        }
     }
 }
