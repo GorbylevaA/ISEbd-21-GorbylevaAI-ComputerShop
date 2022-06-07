@@ -58,6 +58,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 ClientId = order.ClientId,
+                ImplementerId = model.ImplementerId,
                 ComputerId = order.ComputerId,
                 Count = order.Count,
                 Sum = order.Sum,
@@ -82,6 +83,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 ClientId = order.ClientId,
+                ImplementerId = order.ImplementerId,
                 ComputerId = order.ComputerId,
                 Count = order.Count,
                 Sum = order.Sum,
@@ -109,6 +111,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 ClientId = order.ClientId,
+                ImplementerId = order.ImplementerId,
                 ComputerId = order.ComputerId,
                 Count = order.Count,
                 Sum = order.Sum,

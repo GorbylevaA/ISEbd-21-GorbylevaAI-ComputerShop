@@ -16,10 +16,13 @@ namespace ComputerShopFileImplement
         private readonly string ComputerFileName = "Computer.xml";
         private readonly string OrderFileName = "Order.xml";
         private readonly string ClientFileName = "Client.xml";
+        private readonly string ImplementerFileName = "Implementer.xml";
 
         public List<Component> Components { get; set; }
 
         public List<Computer> Computers { get; set; }
+
+        public List<Implementer> Implementers { get; set; }
 
         public List<Order> Orders { get; set; }
 
@@ -31,6 +34,7 @@ namespace ComputerShopFileImplement
             Computers = LoadComputers();
             Orders = LoadOrders();
             Clients = LoadClients();
+            Implementers = LoadImplementers();
         }
 
         public static FileDataListSingleton GetInstance()
@@ -49,6 +53,7 @@ namespace ComputerShopFileImplement
             instance.SaveOrders();
             instance.SaveComputers();
             instance.SaveClients();
+            instance.SaveImplementers();
         }
 
         private List<Component> LoadComponents()
@@ -122,7 +127,8 @@ namespace ComputerShopFileImplement
                         Sum = Convert.ToDecimal(order.Element("Sum").Value),
                         Status = (OrderStatus)Convert.ToInt32(order.Element("Status").Value),
                         DateCreate = Convert.ToDateTime(order.Element("DateCreate").Value),
-                        DateImplement = !string.IsNullOrEmpty(order.Element("DateImplement").Value) ? Convert.ToDateTime(order.Element("DateImplement").Value) : (DateTime?)null
+                        DateImplement = !string.IsNullOrEmpty(order.Element("DateImplement").Value) ? Convert.ToDateTime(order.Element("DateImplement").Value) : (DateTime?)null,
+                        ImplementerId = Convert.ToInt32(order.Element("ImplementerId").Value)
                     });
                 }
             }
@@ -146,6 +152,29 @@ namespace ComputerShopFileImplement
                         ClientFIO = elem.Element("ClientFIO").Value,
                         Email = elem.Element("Email").Value,
                         Password = elem.Element("Password").Value,
+                    });
+                }
+            }
+            return list;
+        }
+
+        private List<Implementer> LoadImplementers()
+        {
+            var list = new List<Implementer>();
+
+            if (File.Exists(ClientFileName))
+            {
+                XDocument xDocument = XDocument.Load(ClientFileName);
+                var xElements = xDocument.Root.Elements("Implementer").ToList();
+
+                foreach (var elem in xElements)
+                {
+                    list.Add(new Implementer
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        ImplementerFIO = elem.Element("ImplementerFIO").Value,
+                        WorkingTime = Convert.ToInt32(elem.Element("WorkingTime").Value),
+                        PauseTime = Convert.ToInt32(elem.Element("PauseTime").Value),
                     });
                 }
             }
@@ -213,6 +242,7 @@ namespace ComputerShopFileImplement
                         new XElement("Sum", order.Sum),
                         new XElement("Status", (int)order.Status),
                         new XElement("DateCreate", order.DateCreate.ToString()),
+                        new XElement("ImplementerId", order.ImplementerId),
                         new XElement("DateImplement", order.DateImplement.ToString())));
                 }
                 XDocument xDocument = new XDocument(xElement);
@@ -237,6 +267,26 @@ namespace ComputerShopFileImplement
 
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(ClientFileName);
+            }
+        }
+
+        private void SaveImplementers()
+        {
+            if (Implementers != null)
+            {
+                var xElement = new XElement("Implementers");
+
+                foreach (var implementer in Implementers)
+                {
+                    xElement.Add(new XElement("Implementer",
+                    new XAttribute("Id", implementer.Id),
+                    new XElement("ImplementerFIO", implementer.ImplementerFIO),
+                    new XElement("WorkingTime", implementer.WorkingTime),
+                    new XElement("PauseTime", implementer.PauseTime)));
+                }
+
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(ImplementerFileName);
             }
         }
     }

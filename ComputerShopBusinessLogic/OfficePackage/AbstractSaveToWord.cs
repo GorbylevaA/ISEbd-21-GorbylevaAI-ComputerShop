@@ -53,4 +53,3 @@ namespace ComputerShopBusinessLogic.OfficePackage
         protected abstract void SaveWord(WordInfo info);
     }
 }
-
