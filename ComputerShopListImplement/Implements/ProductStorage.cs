@@ -133,7 +133,7 @@ namespace ComputerShopListImplement.Implements
         }
         private ComputerViewModel CreateModel(Computer product)
         {
-            // требуется дополнительно получить список компонентов для изделия с названиями и их количество
+           
         var productComponents = new Dictionary<int, (string, int)>();
             foreach (var pc in product.ComputerComponents)
             {

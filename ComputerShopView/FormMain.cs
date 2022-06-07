@@ -1,24 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using ComputerShopContracts.BindingModels;
-using ComputerShopBusinessLogic.BusinessLogics;
 using ComputerShopContracts.BusinessLogicsContracts;
 using Unity;
 
 
 namespace ComputerShopView
 {
-    public partial class FormMain : Form
+    partial class FormMain : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        private readonly OrderLogic _orderLogic;
-        public FormMain(OrderLogic orderLogic)
+        private readonly IOrderLogic _orderLogic;
+        public FormMain(IOrderLogic orderLogic)
         {
             InitializeComponent();
             this._orderLogic = orderLogic;
@@ -35,7 +29,7 @@ namespace ComputerShopView
                 dataGridView.DataSource = list;
                 dataGridView.Columns[0].Visible = false;
                 dataGridView.Columns[1].Visible = false;
-                dataGridView.Columns[7].AutoSizeMode =
+                dataGridView.Columns[2].AutoSizeMode =
                 DataGridViewAutoSizeColumnMode.Fill;
             }
             catch (Exception ex)
@@ -54,6 +48,17 @@ namespace ComputerShopView
         private void компонентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormComponents>();
+            form.ShowDialog();
+        }
+        private void пополнениеСкладаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReplenishmentWareHouse>();
+            form.ShowDialog();
+        }
+
+        private void складыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormWareHouses>();
             form.ShowDialog();
         }
         private void ButtonCreateOrder_Click(object sender, EventArgs e)
@@ -128,11 +133,6 @@ namespace ComputerShopView
             LoadData();
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
+     
     }
 }

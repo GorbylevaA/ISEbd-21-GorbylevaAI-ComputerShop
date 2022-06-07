@@ -74,7 +74,7 @@ namespace ComputerShopView
         }
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            var form = Program.Container.Resolve<FormComputerComponent>();
+            var form = Container.Resolve<FormComputerComponent>();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 if (computerComponent.ContainsKey(form.Id))
