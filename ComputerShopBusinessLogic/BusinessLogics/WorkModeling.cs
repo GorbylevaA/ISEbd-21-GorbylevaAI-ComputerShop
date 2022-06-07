@@ -35,7 +35,7 @@ namespace ComputerShopBusinessLogic.BusinessLogics
 
         private async Task WorkerWorkAsync(ImplementerViewModel implementer, ConcurrentBag<OrderViewModel> orders)
         {
-            
+            // ищем заказы, которые уже в работе (вдруг исполнителя прервали)
             var runOrders = await Task.Run(() => _orderLogic.Read(new OrderBindingModel
             {
                 ImplementerId = implementer.Id,
@@ -44,9 +44,10 @@ namespace ComputerShopBusinessLogic.BusinessLogics
 
             foreach (var order in runOrders)
             {
-               
+                // делаем работу заново
                 Thread.Sleep(implementer.WorkingTime * _rnd.Next(1, 5) * order.Count);
                 _orderLogic.FinishOrder(new ChangeStatusBindingModel { OrderId = order.Id });
+                // отдыхаем
                 Thread.Sleep(implementer.PauseTime);
             }
 

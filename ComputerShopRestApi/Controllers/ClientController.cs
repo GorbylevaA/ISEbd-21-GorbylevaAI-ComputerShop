@@ -2,6 +2,7 @@
 using ComputerShopContracts.BusinessLogicsContracts;
 using ComputerShopContracts.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace ComputerShopRestApi.Controllers
 {
@@ -9,24 +10,30 @@ namespace ComputerShopRestApi.Controllers
     [ApiController]
     public class ClientController : Controller
     {
-        private readonly IClientLogic _logic;
+        private readonly IClientLogic _clientLogic;
 
-        public ClientController(IClientLogic logic)
+        private readonly IMessageInfoLogic _mailLogic;
+
+        public ClientController(IClientLogic clientLogic, IMessageInfoLogic mailLogic)
         {
-            _logic = logic;
+            _clientLogic = clientLogic;
+            _mailLogic = mailLogic;
         }
 
         [HttpGet]
         public ClientViewModel Login(string login, string password)
         {
-            var list = _logic.Read(new ClientBindingModel { Email = login, Password = password });
+            var list = _clientLogic.Read(new ClientBindingModel { Email = login, Password = password });
             return (list != null && list.Count > 0) ? list[0] : null;
         }
 
         [HttpPost]
-        public void Register(ClientBindingModel model) => _logic.CreateOrUpdate(model);
+        public void Register(ClientBindingModel model) => _clientLogic.CreateOrUpdate(model);
 
         [HttpPost]
-        public void UpdateData(ClientBindingModel model) => _logic.CreateOrUpdate(model);
+        public void UpdateData(ClientBindingModel model) => _clientLogic.CreateOrUpdate(model);
+
+        [HttpGet]
+        public List<MessageInfoViewModel> GetMessages(int clientId) => _mailLogic.Read(new MessageInfoBindingModel { ClientId = clientId });
     }
 }

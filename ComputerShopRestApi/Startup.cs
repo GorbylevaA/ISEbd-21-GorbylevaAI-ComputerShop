@@ -1,4 +1,7 @@
 using ComputerShopBusinessLogic.BusinessLogics;
+using ComputerShopBusinessLogic.MailWorker;
+using ComputerShopBusinessLogic.MailWorker.Implements;
+using ComputerShopContracts.BindingModels;
 using ComputerShopContracts.BusinessLogicsContracts;
 using ComputerShopContracts.StoragesContracts;
 using ComputerShopDatabaseImplement.Implements;
@@ -8,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 
 namespace ComputerShopRestApi
 {
@@ -26,10 +30,14 @@ namespace ComputerShopRestApi
             services.AddTransient<IClientStorage, ClientStorage>();
             services.AddTransient<IOrderStorage, OrderStorage>();
             services.AddTransient<IComputerStorage, ComputersStorage>();
+            services.AddTransient<IMessageInfoStorage, MessageInfoStorage>();
 
             services.AddTransient<IOrderLogic, OrderLogic>();
             services.AddTransient<IClientLogic, ClientLogic>();
             services.AddTransient<IComputerLogic, ComputerLogic>();
+            services.AddTransient<IMessageInfoLogic, MessageInfoLogic>();
+
+            services.AddSingleton<AbstractMailWorker, MailKitWorker>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -57,6 +65,17 @@ namespace ComputerShopRestApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            var mailSender = app.ApplicationServices.GetService<AbstractMailWorker>();
+            mailSender.MailConfig(new MailConfigBindingModel
+            {
+                MailLogin = Configuration?["MailLogin"]?.ToString(),
+                MailPassword = Configuration?["MailPassword"]?.ToString(),
+                SmtpClientHost = Configuration?["SmtpClientHost"]?.ToString(),
+                SmtpClientPort = Convert.ToInt32(Configuration?["SmtpClientPort"]?.ToString()),
+                PopHost = Configuration?["PopHost"]?.ToString(),
+                PopPort = Convert.ToInt32(Configuration?["PopPort"]?.ToString())
             });
         }
     }
