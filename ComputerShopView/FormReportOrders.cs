@@ -22,7 +22,7 @@ namespace ComputerShopView
             {
                 Dock = DockStyle.Fill
             };
-            reportViewer.LocalReport.LoadReportDefinition(new FileStream("C:\\АНТОНИНА УЧЕБА\\тп лабы 2 сем\\7 лр\\ComputerShop7\\ComputerShopView\\ReportOrders.rdlc", FileMode.Open));
+            reportViewer.LocalReport.LoadReportDefinition(new FileStream("C:\\АНТОНИНА УЧЕБА\\тп лабы 2 сем\\8 лр\\ComputerShop8\\ComputerShopView\\ReportOrders.rdlc", FileMode.Open));
             Controls.Clear();
             Controls.Add(reportViewer);
             Controls.Add(panel);
