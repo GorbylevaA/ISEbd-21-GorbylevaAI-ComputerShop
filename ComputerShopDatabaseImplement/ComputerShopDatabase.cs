@@ -9,7 +9,7 @@ namespace ComputerShopDatabaseImplement
         {
             if (optionsBuilder.IsConfigured == false)
             {
-                optionsBuilder.UseSqlServer(@"Server=localhost;Database=computershop;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=localhost;Database=computershop6;Trusted_Connection=True;");
             }
             base.OnConfiguring(optionsBuilder);
         }
@@ -23,5 +23,7 @@ namespace ComputerShopDatabaseImplement
         public virtual DbSet<Order> Orders { set; get; }
 
         public virtual DbSet<Client> Clients { set; get; }
+
+        public virtual DbSet<Implementer> Implementers { set; get; }
     }
 }

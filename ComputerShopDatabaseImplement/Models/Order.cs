@@ -12,6 +12,8 @@ namespace ComputerShopDatabaseImplement.Models
 
         public int ComputerId { get; set; }
 
+        public int? ImplementerId { get; set; }
+
         [Required]
         public int Count { get; set; }
 
@@ -29,5 +31,7 @@ namespace ComputerShopDatabaseImplement.Models
         public virtual Computer Computer { get; set; }
 
         public virtual Client Client { get; set; }
+
+        public virtual Implementer Implementer { get; set; }
     }
 }

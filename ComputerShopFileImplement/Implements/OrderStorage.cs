@@ -34,7 +34,9 @@ namespace ComputerShopFileImplement.Implements
             return _source.Orders
                 .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date)
                 || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date)
-                || (model.ClientId.HasValue && rec.ClientId == model.ClientId))
+                || (model.ClientId.HasValue && rec.ClientId == model.ClientId)
+                || (model.SearchStatus.HasValue && model.SearchStatus.Value == rec.Status)
+                || (model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && model.Status == rec.Status))
                 .Select(CreateModel)
                 .ToList();
         }
@@ -89,6 +91,7 @@ namespace ComputerShopFileImplement.Implements
             order.Sum = model.Sum;
             order.DateCreate = model.DateCreate;
             order.DateImplement = model.DateImplement;
+            order.ImplementerId = model.ImplementerId;
             return order;
         }
 
@@ -106,6 +109,8 @@ namespace ComputerShopFileImplement.Implements
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
                 DateImplement = order.DateImplement,
+                ImplementerId = order.ImplementerId,
+                ImplementerFIO = _source.Implementers.FirstOrDefault(x => x.Id == order.ImplementerId)?.ImplementerFIO
             };
         }
     }

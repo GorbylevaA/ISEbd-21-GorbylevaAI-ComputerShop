@@ -14,6 +14,9 @@ namespace ComputerShopContracts.BindingModels
         public int? ClientId { get; set; }
 
         [DataMember]
+        public int? ImplementerId { get; set; }
+
+        [DataMember]
         public int ComputerId { get; set; }
 
         [DataMember]
@@ -36,5 +39,8 @@ namespace ComputerShopContracts.BindingModels
 
         [DataMember]
         public DateTime? DateTo { get; set; }
+
+        [DataMember]
+        public OrderStatus? SearchStatus { get; set; }
     }
 }
